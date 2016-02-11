@@ -86,7 +86,8 @@ unless ::File.exist?('/etc/delivery/delivery.pem')
 end
 
 execute 'reconfigure delivery' do
-  command '/opt/delivery/bin/delivery-ctl reconfigure'
+  command 'echo "Avoid reconfigure until we have a license key"'
+  #command '/opt/delivery/bin/delivery-ctl reconfigure'
   action :nothing
 end
 
