@@ -127,13 +127,14 @@ end
   end
 end
 
-machine_file 'delivery-server-cert' do
-  chef_server lazy { chef_server_config }
-  path lazy { "/var/opt/delivery/nginx/ca/#{delivery_server_fqdn}.crt" }
-  machine delivery_server_hostname
-  local_path lazy { "#{Chef::Config[:trusted_certs_dir]}/#{delivery_server_fqdn}.crt" }
-  action :download
-end
+# Avoid this since we havent run `delivery-ctl reconfigure`
+# machine_file 'delivery-server-cert' do
+#   chef_server lazy { chef_server_config }
+#   path lazy { "/var/opt/delivery/nginx/ca/#{delivery_server_fqdn}.crt" }
+#   machine delivery_server_hostname
+#   local_path lazy { "#{Chef::Config[:trusted_certs_dir]}/#{delivery_server_fqdn}.crt" }
+#   action :download
+# end
 
 # Create the default Delivery enterprise
 # Avoid this since we havent run `delivery-ctl reconfigure`
