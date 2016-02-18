@@ -136,23 +136,26 @@ machine_file 'delivery-server-cert' do
 end
 
 # Create the default Delivery enterprise
-machine_execute 'Creating Enterprise' do
-  chef_server lazy { chef_server_config }
-  command lazy { delivery_enterprise_cmd }
-  machine delivery_server_hostname
-end
+# Avoid this since we havent run `delivery-ctl reconfigure`
+# machine_execute 'Creating Enterprise' do
+#   chef_server lazy { chef_server_config }
+#   command lazy { delivery_enterprise_cmd }
+#   machine delivery_server_hostname
+# end
 
 # Download the credentials form the Delivery server
-machine_file "/tmp/#{node['delivery-cluster']['delivery']['enterprise']}.creds" do
-  chef_server lazy { chef_server_config }
-  machine delivery_server_hostname
-  local_path "#{cluster_data_dir}/#{node['delivery-cluster']['delivery']['enterprise']}.creds"
-  action :download
-end
+# Avoid this since we havent run `delivery-ctl reconfigure`
+# machine_file "/tmp/#{node['delivery-cluster']['delivery']['enterprise']}.creds" do
+#   chef_server lazy { chef_server_config }
+#   machine delivery_server_hostname
+#   local_path "#{cluster_data_dir}/#{node['delivery-cluster']['delivery']['enterprise']}.creds"
+#   action :download
+# end
 
 # Print the generated Delivery server credentials
-ruby_block 'print-delivery-credentials' do
-  block do
-    puts File.read("#{cluster_data_dir}/#{node['delivery-cluster']['delivery']['enterprise']}.creds")
-  end
-end
+# Avoid this since we havent run `delivery-ctl reconfigure`
+# ruby_block 'print-delivery-credentials' do
+#   block do
+#     puts File.read("#{cluster_data_dir}/#{node['delivery-cluster']['delivery']['enterprise']}.creds")
+#   end
+# end
